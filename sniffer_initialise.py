@@ -1,0 +1,24 @@
+import projectlib
+from projectlib import *
+
+
+
+pipes=[[0x65,0x64,0x6f,0x4e,0x31],[0x65,0x64,0x6f,0x4e,0x32],[0x65,0x64,0x6f,0x4e,0x33],[0x65,0x64,0x6f,0x4e,0x34],[0x65,0x64,0x6f,0x4e,0x35],[0x65,0x64,0x6f,0x4e,0x36]]
+
+radio=NRF24(GPIO,spidev.SpiDev())
+radio.begin(0,17)
+radio.setRetries(15,15)
+radio.setPayloadSize(32)
+
+radio.openReadingPipe(1,pipes[1])
+radio.openReadingPipe(2,pipes[2])
+radio.openReadingPipe(3,pipes[3])
+radio.openReadingPipe(4,pipes[4])
+radio.openReadingPipe(5,pipes[5])
+radio.openWritingPipe(pipes[0])
+
+radio.startListening()
+radio.printDetails()
+
+
+
